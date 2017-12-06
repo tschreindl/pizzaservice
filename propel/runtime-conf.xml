@@ -1,0 +1,14 @@
+<config>
+    <propel>
+        <datasources default="pizzaservice">
+            <datasource id="pizzaservice">
+                <adapter>mysql</adapter>
+                <connection>
+                    <dsn>mysql:host=localhost;port=5678;dbname=pizzaservice</dsn>
+                    <user>root</user>
+                    <password>root</password>
+                </connection>
+            </datasource>
+        </datasources>
+    </propel>
+</config>

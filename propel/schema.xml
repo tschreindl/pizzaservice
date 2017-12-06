@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database name="pizzaservice" defaultIdMethod="native" namespace="Pizzaservice\Propel\Models">
+    <table name="customers" phpName="Customer">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="first_name" type="varchar" size="128" required="true"/>
+        <column name="last_name" type="varchar" size="128" required="true"/>
+        <column name="street" type="varchar" size="128" required="true"/>
+        <column name="house_number" type="integer" required="true"/>
+        <column name="place" type="varchar" size="128" required="true"/>
+        <column name="post_code" type="integer" size="128" required="true"/>
+    </table>
+
+    <table name="orders" phpName="Order">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="date" type="date" required="true"/>
+        <column name="time" type="time" required="true"/>
+        <column name="total" type="float" required="true"/>
+    </table>
+
+    <table name="pizzas" phpName="Pizza">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="name" type="varchar" size="128" required="true"/>
+        <column name="price" type="float" required="true"/>
+    </table>
+
+    <table name="ingredients" phpName="Ingredient">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="name" type="varchar" size="128" required="true"/>
+    </table>
+
+
+    <table name="customer_orders" isCrossRef="true">
+        <column name="customer_id" type="integer" primaryKey="true"/>
+        <column name="order_id" type="integer" primaryKey="true"/>
+        <foreign-key foreignTable="customers">
+            <reference local="customer_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key foreignTable="orders">
+            <reference local="order_id" foreign="id"/>
+        </foreign-key>
+    </table>
+
+    <table name="order_pizzas" isCrossRef="true">
+        <column name="order_id" type="integer" primaryKey="true"/>
+        <column name="pizza_id" type="integer" primaryKey="true"/>
+        <column name="amount" type="integer" required="true"/>
+        <foreign-key foreignTable="orders">
+            <reference local="order_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key foreignTable="pizzas">
+            <reference local="pizza_id" foreign="id"/>
+        </foreign-key>
+    </table>
+
+    <table name="pizza_ingredients" isCrossRef="true">
+        <column name="pizza_id" type="integer" primaryKey="true"/>
+        <column name="ingredient_id" type="integer" primaryKey="true"/>
+        <foreign-key foreignTable="pizzas">
+            <reference local="pizza_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key foreignTable="ingredients">
+            <reference local="ingredient_id" foreign="id"/>
+        </foreign-key>
+    </table>
+
+</database>
