@@ -1,6 +1,6 @@
 # pizzaservice
 
-## Allgemein:
+### Allgemein:
 Dieses Projekt wird ein Übungsprojekt mit Datenbanken und Propel in PHP. Ziel ist es ein Pizzalieferdienst zu realisieren.
 Dazu müssen verschiedene Anforderungen erfüllt werden:
 
@@ -12,4 +12,21 @@ Dazu müssen verschiedene Anforderungen erfüllt werden:
 * Eine Bestellung ist einem Kunden zugeordnet
 * Kunden müssen gespeichert werden können
  
-Das Projekt wird kontinuierlich weiterentwickelt.
+Das Projekt wird kontinuierlich weiterentwickelt. (Aktuell Phase 3 - Command Line Interface)
+
+### Verwendung:
+
+Symfony Konsolen Befehle:
+````
+php cli/pizzatool.php [command]
+````
+Befehle:
+````
+create:ingredient       --> Erstellt eine neue Zutat.
+create:pizza            --> Erstellt eine neue Pizza mit Zutaten.
+list:ingrediet          --> Listet alle Zutaten auf.
+list:pizza              --> Listet alle Pizzen mit deren Zutaten auf.
+````
+
+### Authors
+Azubi Projekt von Tim Schreindl
