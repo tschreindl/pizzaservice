@@ -9,7 +9,7 @@
 namespace Pizzaservice\Cli\Commands;
 
 use Pizzaservice\Propel\Models\IngredientQuery;
-use Pizzaservice\Propel\Models\PizzaIngredientsQuery;
+use Pizzaservice\Propel\Models\PizzaIngredientQuery;
 use Pizzaservice\Propel\Models\PizzaQuery;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -55,7 +55,7 @@ class ListPizzaCommand extends Command
         foreach ($pizzaIds as $i => $pizzaId)
         {
             echo "\nPizza: " . $pizzaNames[$i] . "\n";
-            $pizzaIngredients = PizzaIngredientsQuery::create()->findByPizzaId($pizzaId);
+            $pizzaIngredients = PizzaIngredientQuery::create()->findByPizzaId($pizzaId);
             echo "Zutaten:\n";
             foreach ($pizzaIngredients as $pizzaIngredient)
             {
