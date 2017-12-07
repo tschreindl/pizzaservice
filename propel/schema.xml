@@ -29,36 +29,36 @@
     </table>
 
 
-    <table name="customer_orders" isCrossRef="true">
+    <table name="customer_orders" phpName="CustomerOrder" isCrossRef="true">
         <column name="customer_id" type="integer" primaryKey="true"/>
         <column name="order_id" type="integer" primaryKey="true"/>
-        <foreign-key foreignTable="customers">
+        <foreign-key foreignTable="customers" phpName="Customer">
             <reference local="customer_id" foreign="id"/>
         </foreign-key>
-        <foreign-key foreignTable="orders">
+        <foreign-key foreignTable="orders" phpName="Order">
             <reference local="order_id" foreign="id"/>
         </foreign-key>
     </table>
 
-    <table name="order_pizzas" isCrossRef="true">
+    <table name="order_pizzas" phpName="PizzaOrder" isCrossRef="true">
         <column name="order_id" type="integer" primaryKey="true"/>
         <column name="pizza_id" type="integer" primaryKey="true"/>
         <column name="amount" type="integer" required="true"/>
-        <foreign-key foreignTable="orders">
+        <foreign-key foreignTable="orders" phpName="Order">
             <reference local="order_id" foreign="id"/>
         </foreign-key>
-        <foreign-key foreignTable="pizzas">
+        <foreign-key foreignTable="pizzas" phpName="Pizza">
             <reference local="pizza_id" foreign="id"/>
         </foreign-key>
     </table>
 
-    <table name="pizza_ingredients" isCrossRef="true">
+    <table name="pizza_ingredients" phpName="PizzaIngredient" isCrossRef="true">
         <column name="pizza_id" type="integer" primaryKey="true"/>
         <column name="ingredient_id" type="integer" primaryKey="true"/>
-        <foreign-key foreignTable="pizzas">
+        <foreign-key foreignTable="pizzas" phpName="Pizza">
             <reference local="pizza_id" foreign="id"/>
         </foreign-key>
-        <foreign-key foreignTable="ingredients">
+        <foreign-key foreignTable="ingredients" phpName="Ingredient">
             <reference local="ingredient_id" foreign="id"/>
         </foreign-key>
     </table>
