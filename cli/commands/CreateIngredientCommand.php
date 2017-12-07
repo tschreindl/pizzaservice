@@ -47,8 +47,8 @@ class CreateIngredientCommand extends Command
         $ingredients = IngredientQuery::create()->find();
         foreach ($ingredients as $ingredient)
         {
-            $explode = explode("\n", $ingredient);
-            echo "-> " . substr($explode[1], 6) . "\n";
+            /** @var Ingredient $ingredient */
+            echo "-> " . $ingredient->getName() . "\n";
         }
         echo "\n";
 

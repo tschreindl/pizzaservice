@@ -8,7 +8,10 @@
 
 namespace Pizzaservice\Cli\Commands;
 
+use Pizzaservice\Propel\Models\Ingredient;
 use Pizzaservice\Propel\Models\IngredientQuery;
+use Pizzaservice\Propel\Models\Pizza;
+use Pizzaservice\Propel\Models\PizzaIngredient;
 use Pizzaservice\Propel\Models\PizzaIngredientQuery;
 use Pizzaservice\Propel\Models\PizzaQuery;
 use Symfony\Component\Console\Command\Command;
@@ -47,9 +50,9 @@ class ListPizzaCommand extends Command
         $pizzaNames = array();
         foreach ($pizzas as $pizza)
         {
-            $explode = explode("\n", $pizza);
-            $pizzaIds[] = substr($explode[0], 3);
-            $pizzaNames[] = substr($explode[1], 6);
+            /** @var Pizza $pizza */
+            $pizzaIds[] = $pizza->getId();
+            $pizzaNames[] = $pizza->getName();
         }
 
         foreach ($pizzaIds as $i => $pizzaId)
@@ -59,12 +62,12 @@ class ListPizzaCommand extends Command
             echo "Zutaten:\n";
             foreach ($pizzaIngredients as $pizzaIngredient)
             {
-                $explode = explode("\n", $pizzaIngredient);
-                $ingredients = IngredientQuery::create()->findById(substr($explode[1], 14));
+                /** @var PizzaIngredient $pizzaIngredient */
+                $ingredients = IngredientQuery::create()->findById($pizzaIngredient->getIngredientId());
                 foreach ($ingredients as $ingredient)
                 {
-                    $explode = explode("\n", $ingredient);
-                    echo "-> " . substr($explode[1], 6) . "\n";
+                    /** @var Ingredient $ingredient */
+                    echo "-> " . $ingredient->getName() . "\n";
                 }
             }
         }

@@ -10,6 +10,7 @@ namespace Pizzaservice\Cli\Commands;
 
 require_once __DIR__ . "/../../vendor/autoload.php";
 
+use Pizzaservice\Propel\Models\Ingredient;
 use Pizzaservice\Propel\Models\IngredientQuery;
 use Pizzaservice\Propel\Models\Pizza;
 use Pizzaservice\Propel\Models\PizzaQuery;
@@ -53,8 +54,8 @@ class CreatePizzaCommand extends Command
 
         foreach ($pizzas as $pizza)
         {
-            $explode = explode("\n", $pizza);
-            echo "-> " . substr($explode[1], 6) . "\n";
+            /** @var Pizza $pizza */
+            echo "-> " . $pizza->getName() . "\n";
         }
         echo "\n";
 
@@ -77,8 +78,8 @@ class CreatePizzaCommand extends Command
 
         foreach ($ingredients as $ingredient)
         {
-            $explode = explode("\n", $ingredient);
-            $ingredientsArray[] = substr($explode[1], 6);
+            /** @var Ingredient $ingredient */
+            $ingredientsArray[] = $ingredient->getName();
         }
 
         $question = new ChoiceQuestion("Bitte Zutaten für die Pizza angeben:", $ingredientsArray);

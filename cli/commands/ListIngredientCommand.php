@@ -10,6 +10,7 @@ namespace Pizzaservice\Cli\Commands;
 
 require_once __DIR__ . "/../../vendor/autoload.php";
 
+use Pizzaservice\Propel\Models\Ingredient;
 use Pizzaservice\Propel\Models\IngredientQuery;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -45,7 +46,8 @@ class ListIngredientCommand extends Command
         echo "\nEs gibt aktuell " . count($ingredients) . " Zutaten\n";
         foreach ($ingredients as $ingredient)
         {
-            echo "\n" . $ingredient;
+            /** @var Ingredient $ingredient */
+            echo "\n-> " . $ingredient->getName();
         }
         echo "\n";
     }
