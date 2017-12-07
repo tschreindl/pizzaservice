@@ -6,10 +6,11 @@
  * @author Tim Schreindl <tim.schreindl@cn-consult.eu>
  */
 
-namespace Pizzaservice\Cli;
+//namespace Pizzaservice\Cli;
 
-$loader = require __DIR__ . "/../vendor/autoload.php";
-$loader->addPsr4("Pizzaservice\\Cli\\Commands\\", __DIR__ . "/commands");
+require __DIR__ . "/../vendor/autoload.php";
+
+Propel::init(__DIR__ . "/../propel/conf/pizzaservice-conf.php");
 
 use Pizzaservice\Cli\Commands\CreateIngredientCommand;
 use Pizzaservice\Cli\Commands\CreatePizzaCommand;

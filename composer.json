@@ -2,5 +2,10 @@
     "require": {
         "propel/propel1": "~1.7",
         "symfony/console": "^3.3"
+    },
+
+    "autoload": {
+        "psr-4": {"Pizzaservice\\": ""},
+        "files": ["vendor/propel/propel1/runtime/lib/Propel.php"]
     }
 }
