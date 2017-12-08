@@ -12,6 +12,7 @@ require __DIR__ . "/vendor/autoload.php";
 
 Propel::init(__DIR__ . "/propel/conf/pizzaservice-conf.php");
 
+use Pizzaservice\Cli\Commands\CreateCustomerCommand;
 use Pizzaservice\Cli\Commands\CreateIngredientCommand;
 use Pizzaservice\cli\commands\CreateOrderCommand;
 use Pizzaservice\Cli\Commands\CreatePizzaCommand;
@@ -23,6 +24,7 @@ $application = new Application();
 $application->add(new CreateIngredientCommand());
 $application->add(new CreatePizzaCommand());
 $application->add(new CreateOrderCommand());
+$application->add(new CreateCustomerCommand());
 $application->add(new ListIngredientCommand());
 $application->add(new ListPizzaCommand());
 

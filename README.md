@@ -24,6 +24,8 @@ Befehle:
 ````
 create:ingredient       --> Erstellt eine neue Zutat.
 create:pizza            --> Erstellt eine neue Pizza mit Zutaten.
+create:customer         --> Erstellt einen neuen Kunden.
+create:order            --> Erstellt eine neue Bestellung.
 list:ingrediet          --> Listet alle Zutaten auf.
 list:pizza              --> Listet alle Pizzen mit deren Zutaten auf.
 ````
