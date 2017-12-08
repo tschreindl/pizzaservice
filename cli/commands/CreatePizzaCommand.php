@@ -49,12 +49,12 @@ class CreatePizzaCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        /** @var Pizza[] $pizzas */
         $pizzas = PizzaQuery::create()->find();
         echo "\nFolgende Pizzen gibt es bereits:\n";
 
         foreach ($pizzas as $pizza)
         {
-            /** @var Pizza $pizza */
             echo "-> " . $pizza->getName() . "\n";
         }
         echo "\n";
@@ -68,10 +68,10 @@ class CreatePizzaCommand extends Command
 
         $question = new Question("Was soll die Pizza kosten (€)?\n");
 
-        $price = $helper->ask($input, $output, $question);
+        $price = str_replace(",", ".", $helper->ask($input, $output, $question));
         if (!$price) return;
 
-        echo "Okay du hast dich für eine Pizza $pizzaName für $price € entschieden.\n\n";
+        echo "Okay du hast dich für eine Pizza $pizzaName für " . number_format($price, 2) . "€ entschieden.\n\n";
 
         $ingredients = IngredientQuery::create()->find();
         $ingredientsArray = array();
@@ -111,7 +111,6 @@ class CreatePizzaCommand extends Command
         $newPizza->save();
 
         echo "Okay die Pizza $pizzaName wurde erstellt!\n";
-
     }
 
 }

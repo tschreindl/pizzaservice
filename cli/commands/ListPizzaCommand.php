@@ -8,11 +8,7 @@
 
 namespace Pizzaservice\Cli\Commands;
 
-use Pizzaservice\Propel\Models\Ingredient;
-use Pizzaservice\Propel\Models\IngredientQuery;
 use Pizzaservice\Propel\Models\Pizza;
-use Pizzaservice\Propel\Models\PizzaIngredient;
-use Pizzaservice\Propel\Models\PizzaIngredientQuery;
 use Pizzaservice\Propel\Models\PizzaQuery;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -44,33 +40,18 @@ class ListPizzaCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        /** @var Pizza[] $pizzas */
         $pizzas = PizzaQuery::create()->find();
         echo "\nEs gibt aktuell " . count($pizzas) . " Pizzen\n";
-        $pizzaIds = array();
-        $pizzaNames = array();
         foreach ($pizzas as $pizza)
         {
-            /** @var Pizza $pizza */
-            $pizzaIds[] = $pizza->getId();
-            $pizzaNames[] = $pizza->getName();
-        }
-
-        foreach ($pizzaIds as $i => $pizzaId)
-        {
-            echo "\nPizza: " . $pizzaNames[$i] . "\n";
-            $pizzaIngredients = PizzaIngredientQuery::create()->findByPizzaId($pizzaId);
+            echo "\nPizza: " . $pizza->getName() . "\n";
+            $ingredients = $pizza->getIngredients();
             echo "Zutaten:\n";
-            foreach ($pizzaIngredients as $pizzaIngredient)
+            foreach ($ingredients as $ingredient)
             {
-                /** @var PizzaIngredient $pizzaIngredient */
-                $ingredients = IngredientQuery::create()->findById($pizzaIngredient->getIngredientId());
-                foreach ($ingredients as $ingredient)
-                {
-                    /** @var Ingredient $ingredient */
-                    echo "-> " . $ingredient->getName() . "\n";
-                }
+                echo "-> " . $ingredient->getName() . "\n";
             }
         }
-        echo "\n";
     }
 }
