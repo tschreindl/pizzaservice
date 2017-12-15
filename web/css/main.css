@@ -1,0 +1,65 @@
+.navbar {
+    margin-top: 10px;
+    border-radius: 5px;
+    border: thin solid lightgray;
+}
+
+.navbar-default .navbar-brand {
+    color: black;
+    font-weight: bold;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #333333;
+    font-weight: revert;
+}
+
+#counter {
+    margin-left: 2px;
+    padding: 2px 8px;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+}
+table {
+    margin: auto;
+}
+
+table th {
+    padding-bottom: 10px;
+    padding-right: 100px;
+    border-bottom: solid lightgray;
+}
+
+table th:first-child {
+    padding-right: 200px;
+}
+
+table th:nth-child(2) {
+    padding-right: 450px;
+}
+
+table td {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: thin solid lightgray;
+}
+
+table .form-inline .form-control {
+    width: 70px;
+}
+
+#address-field {
+    margin-top: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    border: thin solid lightgray;
+    border-radius: 10px;
+}
+
+#address-field label {
+    padding-top: 20px;
+}
