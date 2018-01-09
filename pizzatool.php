@@ -12,11 +12,13 @@ require __DIR__ . "/vendor/autoload.php";
 
 Propel::init(__DIR__ . "/propel/conf/pizzaservice-conf.php");
 
+use Pizzaservice\cli\commands\CompleteOrderCommand;
 use Pizzaservice\Cli\Commands\CreateCustomerCommand;
 use Pizzaservice\Cli\Commands\CreateIngredientCommand;
 use Pizzaservice\cli\commands\CreateOrderCommand;
 use Pizzaservice\Cli\Commands\CreatePizzaCommand;
 use Pizzaservice\Cli\Commands\ListIngredientCommand;
+use Pizzaservice\cli\commands\ListOrderCommand;
 use Pizzaservice\Cli\Commands\ListPizzaCommand;
 use Symfony\Component\Console\Application;
 
@@ -27,5 +29,7 @@ $application->add(new CreateOrderCommand());
 $application->add(new CreateCustomerCommand());
 $application->add(new ListIngredientCommand());
 $application->add(new ListPizzaCommand());
+$application->add(new CompleteOrderCommand());
+$application->add(new ListOrderCommand());
 
 $application->run();

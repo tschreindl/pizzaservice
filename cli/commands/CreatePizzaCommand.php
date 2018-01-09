@@ -97,13 +97,13 @@ class CreatePizzaCommand extends Command
 
         $newPizza = new Pizza();
         $newPizza->setName($pizzaName);
-        $newPizza->setPrice($price);
+        $newPizza->setPrice(floatval($price));
 
         foreach ($selectedIngredients as $selectedIngredient)
         {
             foreach ($ingredients as $ingredient)
             {
-                if (stristr($ingredient, $selectedIngredient)) $newPizza->addIngredient($ingredient);
+                if (stristr($ingredient->getName(), $selectedIngredient)) $newPizza->addIngredient($ingredient);
             }
 
         }
