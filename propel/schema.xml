@@ -15,6 +15,7 @@
         <column name="date" type="date" required="true"/>
         <column name="time" type="time" required="true"/>
         <column name="total" type="float" required="true"/>
+        <column name="completed" type="boolean" required="false"/>
     </table>
 
     <table name="pizzas" phpName="Pizza">
