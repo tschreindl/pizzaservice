@@ -49,7 +49,7 @@ $(document).ready(function () {
         });
     });
 
-    var input = $("input");
+    var input = $("table input");
     var amount;
     input.focusin(function () {
         amount = $(this).val();
