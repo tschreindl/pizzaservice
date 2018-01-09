@@ -8,11 +8,22 @@
 
 session_start();
 
+$pizzaID = $_GET["pizzaid"];
+$amount = $_GET["amount"];
+
 if (!isset($_SESSION["order"]))
 {
-    $_SESSION["order"] = array(array($_GET["pizzaid"], $_GET["amount"]));
+    $_SESSION["order"] = array(array($pizzaID, $amount));
 }
 else
 {
-    $_SESSION["order"][] = array($_GET["pizzaid"], $_GET["amount"]);
+    foreach ($_SESSION["order"] as $i => $order)
+    {
+        if ($order[0] == $pizzaID)
+        {
+            $_SESSION["order"][$i] = array($pizzaID, $order[1] + $amount);
+            return;
+        }
+    }
+    $_SESSION["order"][] = array($pizzaID, $amount);
 }

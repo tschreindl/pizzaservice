@@ -23,6 +23,7 @@
     color: white;
     border-radius: 10px;
 }
+
 table {
     margin: auto;
 }
@@ -55,11 +56,16 @@ table .form-inline .form-control {
     margin-top: 50px;
     padding-top: 10px;
     padding-bottom: 10px;
-    padding-left: 30px;
+    padding-left: 100px;
     border: thin solid lightgray;
     border-radius: 10px;
 }
 
 #address-field label {
     padding-top: 20px;
+}
+
+#submit_btn {
+    margin-right: 80px;
+    margin-top: 20px;
 }
