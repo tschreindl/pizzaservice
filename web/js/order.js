@@ -17,9 +17,7 @@ $(document).ready(function () {
             }
         });
 
-        if (exit) {
-            return;
-        }
+        if (exit) return;
 
         $.ajax({
             url: "process/index.php" + data, success: function () {
@@ -59,21 +57,17 @@ $(document).ready(function () {
 
     input.focusout(function () {
         var newAmount = $(this).val();
-        if (!newAmount.trim() || newAmount === "0"){
+        if (!newAmount.trim() || newAmount === "0") {
             $(this).val(amount);
             return;
         }
-        if (amount !== newAmount){
+        if (amount !== newAmount) {
             var pizzaId = $(this).siblings("button").prop("id");
             $.ajax({
                 url: "changeamount.php?pizzaId=" + pizzaId + "&amount=" + newAmount, success: function () {
                     var counterElement = $("#counter");
                     var counter = counterElement.text() * 1;
                     counterElement.text((counter - amount + newAmount * 1));
-                    if ($("table tr td").length < 2) {
-                        $("#submit_btn").prop("disabled", true);
-                        $("table tbody").append("<tr><td colspan='3'><div class='alert alert-info text-center'><strong>Keine Pizzen ausgewählt!</strong></div></td></tr>");
-                    }
                 }
             });
         }
