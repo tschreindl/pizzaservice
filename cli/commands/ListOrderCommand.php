@@ -42,8 +42,11 @@ class ListOrderCommand extends Command
             $orders = OrderQuery::create()->filterByCompleted(false)->find();
         }
 
+        if (!count($orders)) echo "Keine Bestellungen gefunden!";
+        echo "\n\n";
         foreach ($orders as $order)
         {
+            /** @var Order $order */
             $customers = $order->getCustomers();
             foreach ($customers as $customer)
             {
@@ -51,20 +54,20 @@ class ListOrderCommand extends Command
                 $output->writeln("Bestellung #" . $order->getId() . " für " . $customer->getFirstName() . " " . $customer->getLastName());
             }
 
-            /** @var Order $order */
-            $pizzas = $order->getPizzas();
+            $pizzas = $order->getPizzaOrdersJoinPizza();
             foreach ($pizzas as $pizza)
             {
-                $output->writeln("-> Pizza " . $pizza->getName());
+                $singlePizza = $pizza->getPizza();
+                $output->writeln("-> Pizza " . $singlePizza->getName() . " (" . $pizza->getAmount() . "x)");
             }
             $output->writeln("Summe: " . number_format($order->getTotal(), 2) . "€");
             if ($order->getCompleted())
             {
-                $output->writeln("Status: Abgeschlossen");
+                $output->writeln("Status: Abgeschlossen\n\n");
             }
             else
             {
-                $output->writeln("Status: In Bearbeitung");
+                $output->writeln("Status: In Bearbeitung\n\n");
             }
         }
     }
