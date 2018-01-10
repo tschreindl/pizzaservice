@@ -57,8 +57,7 @@ class ListOrderCommand extends Command
             $pizzas = $order->getPizzaOrdersJoinPizza();
             foreach ($pizzas as $pizza)
             {
-                $singlePizza = $pizza->getPizza();
-                $output->writeln("-> Pizza " . $singlePizza->getName() . " (" . $pizza->getAmount() . "x)");
+                $output->writeln("-> Pizza " . $pizza->getPizza()->getName() . " (" . $pizza->getAmount() . "x)");
             }
             $output->writeln("Summe: " . number_format($order->getTotal(), 2) . "€");
             if ($order->getCompleted())

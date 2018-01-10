@@ -6,9 +6,9 @@
  * @author Tim Schreindl <tim.schreindl@cn-consult.eu>
  */
 
-namespace Pizzaservice;
-
 require_once "vendor/autoload.php";
+
+Propel::init(__DIR__ . "/propel/conf/pizzaservice-conf.php");
 
 use Pizzaservice\Propel\Models\Ingredient;
 use Pizzaservice\Propel\Models\Pizza;
