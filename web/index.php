@@ -30,6 +30,7 @@ $bodyHTML = "    <table>\n";
 $bodyHTML .= "        <tr>\n";
 $bodyHTML .= "            <th>Pizza</th>\n";
 $bodyHTML .= "            <th>Zutaten</th>\n";
+$bodyHTML .= "            <th>Preis</th>\n";
 $bodyHTML .= "            <th>Bestellung</th>\n";
 $bodyHTML .= "        </tr>\n";
 foreach ($pizzas as $pizza)
@@ -42,6 +43,7 @@ foreach ($pizzas as $pizza)
     }
 
     $bodyHTML .= "            <td>" . implode(", ", $ingredients) . "</td>\n";
+    $bodyHTML .= "            <td>" . number_format($pizza->getPrice(), 2) . "€</td>\n";
     $bodyHTML .= "            <td>\n";
 
     $bodyHTML .= "                <form class='form-inline'>\n";

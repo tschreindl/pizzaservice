@@ -43,7 +43,7 @@ $(document).ready(function () {
                 counterElement.text((counter - button.siblings("input").val() * 1));
                 if ($("table tr td").length < 2) {
                     $("#submit_btn").prop("disabled", true);
-                    $("table tbody").append("<tr><td colspan='3'><div class='alert alert-info text-center'><strong>Keine Pizzen ausgewählt!</strong></div></td></tr>");
+                    $("table tbody").append("<tr><td colspan='4'><div class='alert alert-info text-center'><strong>Keine Pizzen ausgewählt!</strong></div></td></tr>");
                 }
             }
         });

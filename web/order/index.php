@@ -25,6 +25,7 @@ $bodyHTML = "    <table>\n";
 $bodyHTML .= "        <tr>\n";
 $bodyHTML .= "            <th>Pizza</th>\n";
 $bodyHTML .= "            <th>Zutaten</th>\n";
+$bodyHTML .= "            <th>Preis</th>\n";
 $bodyHTML .= "            <th>Anpassen</th>\n";
 $bodyHTML .= "        </tr>\n";
 
@@ -49,6 +50,7 @@ if (isset($_SESSION["order"]) && !empty($_SESSION["order"]))
         }
 
         $bodyHTML .= "            <td>" . implode(", ", $ingredients) . "</td>\n";
+        $bodyHTML .= "            <td>" . number_format($pizza->getPrice(), 2) . "€</td>\n";
         $bodyHTML .= "            <td>\n";
         $bodyHTML .= "                <form class='form-inline'>\n";
         $bodyHTML .= "                    <input type=\"number\" class='form-control' min='1' value=\"" . $amount[$i] . "\">\n";
@@ -62,7 +64,7 @@ if (isset($_SESSION["order"]) && !empty($_SESSION["order"]))
 else
 {
     $bodyHTML .= "        <tr>\n";
-    $bodyHTML .= "            <td colspan='3'><div class='alert alert-info text-center'><strong>Keine Pizzen ausgewählt!</strong></div></td>\n";
+    $bodyHTML .= "            <td colspan='4'><div class='alert alert-info text-center'><strong>Keine Pizzen ausgewählt!</strong></div></td>\n";
     $bodyHTML .= "        </tr>\n";
 }
 
