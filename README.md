@@ -14,11 +14,18 @@ Dazu müssen verschiedene Anforderungen erfüllt werden:
  
 Das Projekt wird kontinuierlich weiterentwickelt. (Aktuell Phase 4 - Web-Interface)
 
-PS: Falls jemand darauf warten sollte, dass der Pizzabote gleich vor der Tür steht, muss ich ihn leider enttäuschen :)
+**PS: Falls jemand darauf warten sollte, dass der Pizzabote gleich vor der Tür steht, muss ich ihn leider enttäuschen :)**
+
+### Anforderungen:
+* [Vagrant](https://www.vagrantup.com/downloads.html) installiert
+* [VirtualBox](https://www.virtualbox.org/wiki/Downloads) installiert
+
+Soll von außerhalb der Vagrant Box auf die MySQL Datenbank zugegriffen werden,
+muss die Config entsprechend [angepasst](https://www.barrykooij.com/connect-mysql-vagrant-machine/) werden.
 
 ### Verwendung:
 
-Bei der Verwendung von Ubuntu muss ``composer dump-autoload -o`` ausgeführt werden.
+Bei Problemen mit dem Composer Autoloader ``composer dump-autoload -o`` ausführen.
 
 ##### Web-Interface:
 Im Order web/ befindet sich die index.php für das Web-Interface.
