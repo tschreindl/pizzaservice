@@ -53,6 +53,7 @@ complete:order <Bestell Nr.>        --> Markiert die Bestellung als abgeschlosse
 list:ingrediet                      --> Listet alle Zutaten auf.
 list:pizza                          --> Listet alle Pizzen mit deren Zutaten auf.
 list:orders [--include-completed]   --> Listet alle offenen Bestellungn auf. Optional können alle Bestellung aufgelistet werden.
+list:customers                      --> Listet alle Kunden in der Datenbank auf.
 ````
 
 ### Authors
