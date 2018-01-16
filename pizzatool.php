@@ -17,6 +17,7 @@ use Pizzaservice\Cli\Commands\CreateCustomerCommand;
 use Pizzaservice\Cli\Commands\CreateIngredientCommand;
 use Pizzaservice\cli\commands\CreateOrderCommand;
 use Pizzaservice\Cli\Commands\CreatePizzaCommand;
+use Pizzaservice\cli\commands\EditCustomerCommand;
 use Pizzaservice\cli\commands\ListCustomersCommand;
 use Pizzaservice\Cli\Commands\ListIngredientCommand;
 use Pizzaservice\cli\commands\ListOrderCommand;
@@ -33,5 +34,6 @@ $application->add(new ListPizzaCommand());
 $application->add(new CompleteOrderCommand());
 $application->add(new ListOrderCommand());
 $application->add(new ListCustomersCommand());
+$application->add(new EditCustomerCommand());
 
 $application->run();
