@@ -17,27 +17,23 @@ class LayoutHelper
 {
     function renderHead($_activeMenu)
     {
-        $headHTML = "<!DOCTYPE html>\n";
-        $headHTML .= "<html lang=\"de\">\n";
-        $headHTML .= "<head>\n";
-        $headHTML .= "    <meta charset=\"UTF-8\">\n";
-        $headHTML .= "    <title>Pizzaservice</title>\n";
-        $headHTML .= "    <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js\"></script>\n";
-        if ($_activeMenu == "pizza")
+        $headHTML[] = "<!DOCTYPE html>";
+        $headHTML[] = "<html lang=\"de\">";
+        $headHTML[] = "<head>";
+        $headHTML[] = "    <meta charset=\"UTF-8\">";
+        $headHTML[] = "    <title>Pizzaservice</title>";
+        $path = "../";
+        if ($_activeMenu == "order")
         {
-            $headHTML .= "    <link href=\"../vendor/twbs/bootstrap/dist/css/bootstrap.css\" rel=\"stylesheet\">\n";
-            $headHTML .= "    <link href=\"../web/css/main.css\" rel=\"stylesheet\">\n";
-            $headHTML .= "    <script src=\"../web/js/pizza.js\"></script>\n";
+            $path = "../../";
         }
-        else if ($_activeMenu == "order")
-        {
-            $headHTML .= "    <link href=\"../../vendor/twbs/bootstrap/dist/css/bootstrap.css\" rel=\"stylesheet\">\n";
-            $headHTML .= "    <link href=\"../../web/css/main.css\" rel=\"stylesheet\">\n";
-            $headHTML .= "    <script src=\"../../web/js/order.js\"></script>\n";
-        }
-        $headHTML .= "</head>\n";
+        $headHTML[] = "    <script src=\"" . $path . "vendor/components/jquery/jquery.min.js\"></script>";
+        $headHTML[] = "    <script src=\"" . $path . "web/js/" . $_activeMenu . ".js\"></script>";
+        $headHTML[] = "    <link href=\"" . $path . "vendor/twbs/bootstrap/dist/css/bootstrap.css\" rel=\"stylesheet\">";
+        $headHTML[] = "    <link href=\"" . $path . "web/css/main.css\" rel=\"stylesheet\">";
+        $headHTML[] = "</head>\n";
 
-        return $headHTML;
+        return implode("\n", $headHTML);
 
     }
 
@@ -52,32 +48,32 @@ class LayoutHelper
             }
         }
 
-        $bodyHTML = "<body>\n";
-        $bodyHTML .= "<div class=\"container\">\n";
-        $bodyHTML .= "    <div class=\"navbar navbar-default navbar-static-top\">\n";
-        $bodyHTML .= "        <a href=\"index.php\" class=\"navbar-brand\">PizzaService</a>\n";
-        $bodyHTML .= "        <ul class=\"nav navbar-nav nav-pills\">\n";
+        $bodyHTML[] = "<body>";
+        $bodyHTML[] = "<div class=\"container\">";
+        $bodyHTML[] = "    <div class=\"navbar navbar-default navbar-static-top\">";
+        $bodyHTML[] = "        <a href=\"index.php\" class=\"navbar-brand\">PizzaService</a>";
+        $bodyHTML[] = "        <ul class=\"nav navbar-nav nav-pills\">";
         if ($_activeMenu == "pizza")
         {
-            $bodyHTML .= "            <li class=\"nav-item active\"><a href=\"index.php\">Pizzakarte</a></li>\n";
-            $bodyHTML .= "            <li class=\"nav-item\"><a href=\"order/index.php\">Bestellung<sup id=\"counter\">" . $counter . "</sup></a></li>\n";
+            $bodyHTML[] = "            <li class=\"nav-item active\"><a href=\"index.php\">Pizzakarte</a></li>";
+            $bodyHTML[] = "            <li class=\"nav-item\"><a href=\"order/index.php\">Bestellung<sup id=\"counter\">" . $counter . "</sup></a></li>";
         }
         else if ($_activeMenu == "order")
         {
-            $bodyHTML .= "            <li class=\"nav-item\"><a href=\"../index.php\">Pizzakarte</a></li>\n";
-            $bodyHTML .= "            <li class=\"nav-item active\"><a href=\"index.php\">Bestellung<sup id=\"counter\">" . $counter . "</sup></a></li>\n";
+            $bodyHTML[] = "            <li class=\"nav-item\"><a href=\"../index.php\">Pizzakarte</a></li>";
+            $bodyHTML[] = "            <li class=\"nav-item active\"><a href=\"index.php\">Bestellung<sup id=\"counter\">" . $counter . "</sup></a></li>";
         }
-        $bodyHTML .= "        </ul>\n";
-        $bodyHTML .= "    </div>\n";
+        $bodyHTML[] = "        </ul>";
+        $bodyHTML[] = "    </div>";
 
-        return $bodyHTML;
+        return implode("\n", $bodyHTML);
     }
 
     function renderFooter()
     {
-        $footerHTML = "</div>\n";
-        $footerHTML .= "</body>\n";
-        $footerHTML .= "</html>\n";
-        return $footerHTML;
+        $footerHTML[] = "</div>";
+        $footerHTML[] = "</body>";
+        $footerHTML[] = "</html>";
+        return implode("\n", $footerHTML);
     }
 }

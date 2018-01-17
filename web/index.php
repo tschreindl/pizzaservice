@@ -26,42 +26,42 @@ echo $layoutHelper->renderHeader("pizza");
 $pizzas = PizzaQuery::create()->find();
 $ingredients = array();
 
-$bodyHTML = "    <table>\n";
-$bodyHTML .= "        <tr>\n";
-$bodyHTML .= "            <th>Pizza</th>\n";
-$bodyHTML .= "            <th>Zutaten</th>\n";
-$bodyHTML .= "            <th>Preis</th>\n";
-$bodyHTML .= "            <th>Bestellung</th>\n";
-$bodyHTML .= "        </tr>\n";
+$bodyHTML[] = "    <table>";
+$bodyHTML[] = "        <tr>";
+$bodyHTML[] = "            <th>Pizza</th>";
+$bodyHTML[] = "            <th>Zutaten</th>";
+$bodyHTML[] = "            <th>Preis</th>";
+$bodyHTML[] = "            <th>Bestellung</th>";
+$bodyHTML[] = "        </tr>";
 foreach ($pizzas as $pizza)
 {
-    $bodyHTML .= "        <tr>\n";
-    $bodyHTML .= "            <td>" . $pizza->getName() . "</td>\n";
+    $bodyHTML[] = "        <tr>";
+    $bodyHTML[] = "            <td>" . $pizza->getName() . "</td>";
     foreach ($pizza->getIngredients() as $ingredient)
     {
         $ingredients[] = $ingredient->getName();
     }
 
-    $bodyHTML .= "            <td>" . implode(", ", $ingredients) . "</td>\n";
-    $bodyHTML .= "            <td>" . number_format($pizza->getPrice(), 2) . "€</td>\n";
-    $bodyHTML .= "            <td>\n";
+    $bodyHTML[] = "            <td>" . implode(", ", $ingredients) . "</td>";
+    $bodyHTML[] = "            <td>" . number_format($pizza->getPrice(), 2) . "€</td>";
+    $bodyHTML[] = "            <td>";
 
-    $bodyHTML .= "                <form class='form-inline'>\n";
-    $bodyHTML .= "                    <input type=\"number\" class='form-control' id=\"" . $pizza->getId() . "\" min='0'>\n";
-    $bodyHTML .= "                    <button class=\"btn btn-primary\" type=\"button\" value=\"" . $pizza->getId() . "\">Bestellen</button>\n";
-    $bodyHTML .= "                </form>\n";
-
-
-    $bodyHTML .= "            </td>\n";
+    $bodyHTML[] = "                <form class='form-inline'>";
+    $bodyHTML[] = "                    <input type=\"number\" class='form-control' id=\"" . $pizza->getId() . "\" min='0'>";
+    $bodyHTML[] = "                    <button class=\"btn btn-primary\" type=\"button\" value=\"" . $pizza->getId() . "\">Bestellen</button>";
+    $bodyHTML[] = "                </form>";
 
 
-    $bodyHTML .= "        </tr>\n";
+    $bodyHTML[] = "            </td>";
+
+
+    $bodyHTML[] = "        </tr>";
     $ingredients = array();
 }
 
-$bodyHTML .= "    </table>\n";
+$bodyHTML[] = "    </table>\n";
 
-echo $bodyHTML;
+echo implode("\n", $bodyHTML);
 
 echo $layoutHelper->renderFooter();
 

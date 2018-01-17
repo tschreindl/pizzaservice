@@ -21,13 +21,13 @@ echo $layoutHelper->renderHead("order");
 
 echo $layoutHelper->renderHeader("order");
 
-$bodyHTML = "    <table>\n";
-$bodyHTML .= "        <tr>\n";
-$bodyHTML .= "            <th>Pizza</th>\n";
-$bodyHTML .= "            <th>Zutaten</th>\n";
-$bodyHTML .= "            <th>Preis</th>\n";
-$bodyHTML .= "            <th>Anpassen</th>\n";
-$bodyHTML .= "        </tr>\n";
+$bodyHTML[] = "    <table>";
+$bodyHTML[] = "        <tr>";
+$bodyHTML[] = "            <th>Pizza</th>";
+$bodyHTML[] = "            <th>Zutaten</th>";
+$bodyHTML[] = "            <th>Preis</th>";
+$bodyHTML[] = "            <th>Anpassen</th>";
+$bodyHTML[] = "        </tr>";
 
 if (isset($_SESSION["order"]) && !empty($_SESSION["order"]))
 {
@@ -42,34 +42,34 @@ if (isset($_SESSION["order"]) && !empty($_SESSION["order"]))
 
     foreach ($pizzas as $i => $pizza)
     {
-        $bodyHTML .= "        <tr>\n";
-        $bodyHTML .= "            <td>" . $pizza->getName() . "</td>\n";
+        $bodyHTML[] = "        <tr>";
+        $bodyHTML[] = "            <td>" . $pizza->getName() . "</td>";
         foreach ($pizza->getIngredients() as $ingredient)
         {
             $ingredients[] = $ingredient->getName();
         }
 
-        $bodyHTML .= "            <td>" . implode(", ", $ingredients) . "</td>\n";
-        $bodyHTML .= "            <td>" . number_format($pizza->getPrice(), 2) . "€</td>\n";
-        $bodyHTML .= "            <td>\n";
-        $bodyHTML .= "                <form class='form-inline'>\n";
-        $bodyHTML .= "                    <input type=\"number\" class='form-control' min='1' value=\"" . $amount[$i] . "\">\n";
-        $bodyHTML .= "                    <button class=\"btn btn-danger\" type=\"button\" id=\"" . $pizza->getId() . "\">Löschen</button>\n";
-        $bodyHTML .= "                </form>\n";
-        $bodyHTML .= "            </td>\n";
-        $bodyHTML .= "        </tr>\n";
+        $bodyHTML[] = "            <td>" . implode(", ", $ingredients) . "</td>";
+        $bodyHTML[] = "            <td>" . number_format($pizza->getPrice(), 2) . "€</td>";
+        $bodyHTML[] = "            <td>";
+        $bodyHTML[] = "                <form class='form-inline'>";
+        $bodyHTML[] = "                    <input type=\"number\" class='form-control' min='1' value=\"" . $amount[$i] . "\">";
+        $bodyHTML[] = "                    <button class=\"btn btn-danger\" type=\"button\" id=\"" . $pizza->getId() . "\">Löschen</button>";
+        $bodyHTML[] = "                </form>";
+        $bodyHTML[] = "            </td>";
+        $bodyHTML[] = "        </tr>";
         $ingredients = array();
     }
 }
 else
 {
-    $bodyHTML .= "        <tr>\n";
-    $bodyHTML .= "            <td colspan='4'><div class='alert alert-info text-center'><strong>Keine Pizzen ausgewählt!</strong></div></td>\n";
-    $bodyHTML .= "        </tr>\n";
+    $bodyHTML[] = "        <tr>";
+    $bodyHTML[] = "            <td colspan='4'><div class='alert alert-info text-center'><strong>Keine Pizzen ausgewählt!</strong></div></td>";
+    $bodyHTML[] = "        </tr>";
 }
 
-$bodyHTML .= "    </table>\n";
-echo $bodyHTML;
+$bodyHTML[] = "    </table>\n";
+echo implode("\n", $bodyHTML);
 ?>
     <form class="container-fluid col-md-8 col-md-offset-2" id="address-field">
         <div class="row">
