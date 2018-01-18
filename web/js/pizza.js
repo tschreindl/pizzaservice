@@ -1,5 +1,6 @@
 $(document).ready(function () {
     $("button").click(function () {
+        var row = $(this).parent().parent().parent();
         var pizzaId = $(this).val();
         var amount = $("#" + pizzaId).val() * 1;
         if (!amount) {
@@ -12,6 +13,7 @@ $(document).ready(function () {
             url: "addpizzaorder.php?pizzaid=" + pizzaId + "&amount=" + amount, success: function () {
                 var counterElement = $("#counter");
                 counterElement.text(counterElement.text() * 1 + amount);
+                row.css("background-color", "rgba(0, 255, 0, 0.1)")
             }
         });
     })

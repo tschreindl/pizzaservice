@@ -35,7 +35,12 @@ table th {
 }
 
 table th:first-child {
+    padding-left: 10px;
     padding-right: 200px;
+}
+
+table td:first-child {
+    padding-left: 10px;
 }
 
 table th:nth-child(2) {
