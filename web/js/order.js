@@ -40,7 +40,13 @@ $(document).ready(function () {
                 button.parent().parent().parent().remove();
                 var counterElement = $("#counter");
                 var counter = counterElement.text() * 1;
-                counterElement.text((counter - button.siblings("input").val() * 1));
+                var summaryElement = $("#amount");
+                var summary = summaryElement.text() * 1;
+                var amount = button.siblings("input").val() * 1;
+                var price = button.parent().parent().parent().find("td:nth-child(3)").text().slice(0, -1) * 1;
+                counterElement.text(counter - amount);
+                $("#pizzen").text(counter - amount);
+                summaryElement.text((summary - (amount * price)).toFixed(2));
                 if ($("table tr td").length < 2) {
                     $("#submit_btn").prop("disabled", true);
                     $("table tbody").append("<tr><td colspan='4'><div class='alert alert-info text-center'><strong>Keine Pizzen ausgewählt!</strong></div></td></tr>");
@@ -63,11 +69,16 @@ $(document).ready(function () {
         }
         if (amount !== newAmount) {
             var pizzaId = $(this).siblings("button").prop("id");
+            var price = $(this).parent().parent().parent().find("td:nth-child(3)").text().slice(0, -1) * 1;
             $.ajax({
                 url: "changeamount.php?pizzaId=" + pizzaId + "&amount=" + newAmount, success: function () {
                     var counterElement = $("#counter");
+                    var summaryElement = $("#amount");
+                    var summary = summaryElement.text() * 1;
                     var counter = counterElement.text() * 1;
                     counterElement.text((counter - amount + newAmount * 1));
+                    $("#pizzen").text(counter - amount + newAmount * 1);
+                    summaryElement.text((summary - (amount * price) + (newAmount * price)).toFixed(2));
                 }
             });
         }

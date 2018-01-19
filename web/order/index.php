@@ -29,9 +29,11 @@ $bodyHTML[] = "            <th>Preis</th>";
 $bodyHTML[] = "            <th>Anpassen</th>";
 $bodyHTML[] = "        </tr>";
 
+$amountPizzas = 0;
+$price = 0;
+
 if (isset($_SESSION["order"]) && !empty($_SESSION["order"]))
 {
-
     foreach ($_SESSION["order"] as $order)
     {
         $pizzaIds[] = $order[0];
@@ -48,7 +50,8 @@ if (isset($_SESSION["order"]) && !empty($_SESSION["order"]))
         {
             $ingredients[] = $ingredient->getName();
         }
-
+        $amountPizzas += $amount[$i];
+        $price += $pizza->getPrice() * $amount[$i];
         $bodyHTML[] = "            <td>" . implode(", ", $ingredients) . "</td>";
         $bodyHTML[] = "            <td>" . number_format($pizza->getPrice(), 2) . "€</td>";
         $bodyHTML[] = "            <td>";
@@ -68,7 +71,8 @@ else
     $bodyHTML[] = "        </tr>";
 }
 
-$bodyHTML[] = "    </table>\n";
+$bodyHTML[] = "    </table>";
+$bodyHTML[] = "    <h4 class='well text-center' id='overview'><ins id='pizzen'>$amountPizzas</ins> Pizzen für <ins id='amount'>" . str_replace(",", "", number_format($price, 2)) . "</ins>€</h4>";
 echo implode("\n", $bodyHTML);
 ?>
     <form class="container-fluid col-md-8 col-md-offset-2" id="address-field">
